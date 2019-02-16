@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+require 'bundler/setup'
+require 'pry-byebug' unless %w(production stage).include? ENV['RACK_ENV']
+
+Rake.add_rakelib 'lib/tasks/db'
+Rake.add_rakelib 'lib/tasks'

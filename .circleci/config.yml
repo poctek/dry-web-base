@@ -1,0 +1,80 @@
+version: 2
+jobs:
+  build:
+    working_directory: /tmp/ruby_base
+    docker:
+      - image: whalesburgcom/ruby:latest
+        environment:
+          POSTGRES_USERNAME: postgres
+          RACK_ENV: test
+      - image: circleci/postgres:10.1-alpine
+      - image: influxdb:latest
+    steps:
+      - checkout
+
+      # Restore bundle cache
+      - restore_cache:
+          keys:
+            - ruby_base-{{ checksum "src/Gemfile.lock" }}
+            - ruby_base
+
+      # Bundle install dependencies
+      - run:
+          name: Install dependencies
+          command: |
+            cd src
+            bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
+
+      # Store bundle cache
+      - save_cache:
+          key: ruby_base-{{ checksum "src/Gemfile.lock" }}
+          paths:
+            - ./src/vendor/bundle
+
+      - run:
+          name: Add application configuration
+          command: |
+            cp src/config/application.example.yml src/config/application.yml
+
+      - run:
+          name: Add PG configuration
+          command: |
+            cp src/config/postgres.example.yml src/config/postgres.yml
+
+      - run:
+          name: Add InfluxDB configuration
+          command: |
+            cp src/config/influx.example.yml src/config/influx.yml
+
+      - run:
+          name: Add Redis configuration
+          command: |
+            cp src/config/redis.example.yml src/config/redis.yml
+
+      - run:
+          name: Setup database
+          command: |
+            cd src
+            bundle exec rake db:create
+            bundle exec rake db:migrate
+            bundle exec rake influx:create
+
+      - run:
+          name: RSpec
+          command: |
+            cd src
+            bundle exec rspec
+
+      - setup_remote_docker
+      - deploy:
+          name: deploy
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker build --rm=false -f docker/stage/Dockerfile -t whalesburgcom/ruby_base:staging .
+              docker push whalesburgcom/ruby_base:staging
+            fi
+            if [ "${CIRCLE_BRANCH}" == "production" ]; then
+              docker build --rm=false -f docker/production/Dockerfile -t whalesburgcom/ruby_base:latest .
+              docker push whalesburgcom/ruby_base:latest
+            fi

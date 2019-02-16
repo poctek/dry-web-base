@@ -1,0 +1,75 @@
+AllCops:
+  TargetRubyVersion: 2.5.1
+
+  Exclude:
+    - ./**/schema.rb
+    - Gemfile
+    - bin/*
+    - bundle/**/*
+    - vendor/**/*
+    - spec/fixtures/**/*
+
+  DisplayCopNames: true
+
+Metrics/LineLength:
+  Max: 120
+  Exclude:
+    - spec/**/*.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*.rb
+    - db/migrate/*.rb
+
+Style/BlockDelimiters:
+  Exclude:
+    - spec/**/*.rb
+
+Rails:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 20
+  Exclude:
+    - db/migrate/*.rb
+
+Metrics/CyclomaticComplexity:
+  Max: 7
+
+Metrics/ParameterLists:
+  Max: 10
+
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - db/migrate/*.rb
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: ()
+    '%i': '[]'
+    '%I': '[]'
+    '%r': '{}'
+    '%w': '()'
+    '%W': '()'
+
+Style/LambdaCall:
+  EnforcedStyle: braces
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Metrics/ClassLength:
+  Max: 200
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Documentation:
+  Enabled: false

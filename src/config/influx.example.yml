@@ -1,0 +1,28 @@
+development:
+  host:
+  port:
+  username:
+  password:
+  database:
+  health_metrics_db:
+test:
+  host:
+  port:
+  username:
+  password:
+  database:
+  health_metrics_db:
+stage:
+  host: backend-metrics
+  port: 8086
+  username:
+  password:
+  database: dev_db
+  health_metrics_db:
+production:
+  host: backend-metrics
+  port: 8086
+  username:
+  password:
+  database: staging_db
+  health_metrics_db:

@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+DEFAULT_FOLDER_NAME = 'ruby_base'
+DEFAULT_MODULE_NAME = 'RubyBase'
+
+def replace(from, to)
+  command = "ag -l #{from} | xargs sed -i '' 's:#{from}:#{to}:g'"
+  `cd ../ && #{command}`
+  `cd ../.circleci && #{command}`
+end
+
+puts 'Renaming files and classes...'
+folder_name = ARGV[0]
+module_name = folder_name.split('_').map(&:capitalize).join
+
+FileUtils.mv File.join('lib', DEFAULT_FOLDER_NAME), File.join('lib', folder_name)
+FileUtils.mv File.join('system', DEFAULT_FOLDER_NAME), File.join('system', folder_name)
+
+replace(DEFAULT_FOLDER_NAME, folder_name)
+replace(DEFAULT_MODULE_NAME, module_name)
+
+`chmod +x bin/*`
+
+puts 'Files and classes renamed'
+
+puts 'Installing gems...'
+`bundle install`
+puts 'Gems installed'

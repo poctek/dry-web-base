@@ -1,0 +1,20 @@
+# Ignore app settings (copy to .example.env.* to check in example files)
+/.env*
+
+# RSpec
+/spec/examples.txt
+
+# Logs
+/log/*.log
+tmp/*
+
+# Temp files
+tmp/*
+
+src/vendor/bundle
+
+config/application.yml
+config/postgres.yml
+config/influx.yml
+config/nodes.yml
+config/redis.yml

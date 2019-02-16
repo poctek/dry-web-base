@@ -1,0 +1,43 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+gem 'rake'
+
+# Web framework
+gem 'dry-system', '~> 0.10.1'
+gem 'dry-web', '~> 0.8.0'
+gem 'dry-web-roda', '~> 0.11'
+gem 'puma'
+
+gem 'rack', '>= 2.0'
+
+# Database persistence
+gem 'sequel'
+# gem 'sequel_pg' # uncomment this to get PG perfomance boost
+gem 'influxdb'
+
+gem 'sentry-raven'
+
+gem 'http'
+
+# Application dependencies
+gem 'dry-matcher', '~> 0.7.0'
+gem 'dry-struct', '~> 0.5.1'
+gem 'dry-transaction', '~> 0.13.0'
+gem 'dry-types', '~> 0.13.2'
+gem 'dry-validation', '~> 0.12.1'
+gem 'dry-monads', '~> 1.0.1'
+
+group :development, :test do
+  gem 'rerun'
+  gem 'pry-byebug', platform: :mri
+  gem 'factory_bot'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'rspec'
+  gem 'vcr'
+  gem 'webmock'
+end
