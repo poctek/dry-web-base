@@ -1,5 +1,7 @@
 # RubyBase
 
+[Roda](http://roda.jeremyevans.net/), [Sequel](https://sequel.jeremyevans.net/), [Dry-web](https://github.com/dry-rb/dry-web) skeleton project
+
 ## First steps
 
 First, navigate to the `src` folder.
