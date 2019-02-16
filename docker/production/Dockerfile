@@ -12,7 +12,7 @@ RUN bundle install --system -j8 --without development test
 COPY ./src /ruby_base
 
 COPY ./src/config/application.example.yml config/application.yml
-COPY ./src/config/postgres.example.yml config/postgres.yml
+COPY ./src/config/pg.example.yml config/pg.yml
 COPY ./src/config/influx.example.yml config/influx.yml
 COPY ./src/config/redis.example.yml config/redis.yml
 

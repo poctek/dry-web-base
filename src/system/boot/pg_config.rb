@@ -10,6 +10,6 @@ RubyBase::Container.boot :pg_config do
     env = ENV.fetch 'RACK_ENV', 'development'
 
     pg = RubyBase::Types::Configs::PG.load(root, 'pg', env, :pg)
-    register :postgres_config, pg.freeze
+    register :pg_config, pg.freeze
   end
 end

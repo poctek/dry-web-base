@@ -39,7 +39,7 @@ jobs:
       - run:
           name: Add PG configuration
           command: |
-            cp src/config/postgres.example.yml src/config/postgres.yml
+            cp src/config/pg.example.yml src/config/pg.yml
 
       - run:
           name: Add InfluxDB configuration
