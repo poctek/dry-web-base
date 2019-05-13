@@ -14,7 +14,7 @@ gem 'rack', '>= 2.0.6'
 
 # Database persistence
 gem 'sequel'
-# gem 'sequel_pg' # uncomment this to get PG perfomance boost
+gem 'sequel_pg' # uncomment this to get PG perfomance boost
 gem 'influxdb'
 
 gem 'sentry-raven'

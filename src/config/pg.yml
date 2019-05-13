@@ -1,0 +1,28 @@
+development:
+  host: localhost
+  port: 5432
+  username:
+  password:
+  database: payouts_development
+  max_connections:
+test:
+  host: localhost
+  port: 5432
+  username:
+  password:
+  database: ruby_base_test
+  max_connections:
+stage:
+  host: private-db
+  port: 5432
+  username:
+  password:
+  database: ruby_base_stage
+  max_connections:
+production:
+  host: private-db
+  port: 5432
+  username:
+  password:
+  database: ruby_base_production
+  max_connections:

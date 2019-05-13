@@ -7,7 +7,7 @@ module RubyBase
     module Base
       def self.included(klass)
         klass.include Dry::Transaction::Operation
-        klass.include Logging
+        klass.include Modules::Logging
       end
     end
   end
