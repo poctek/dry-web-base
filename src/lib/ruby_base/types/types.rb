@@ -3,6 +3,6 @@
 Dry::Types.load_extensions(:maybe)
 module RubyBase
   module Types
-    include Dry::Types.module
+    include Dry::Types()
   end
 end

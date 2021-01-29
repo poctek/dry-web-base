@@ -2,6 +2,7 @@
 
 RubyBase::Container.boot :influx_config do
   init do
+    require 'ruby_base/types/configs/base_config'
     require 'ruby_base/types/configs/influx'
   end
 
@@ -9,7 +10,7 @@ RubyBase::Container.boot :influx_config do
     root = container.root
     env = ENV.fetch 'RACK_ENV', 'development'
 
-    influx = RubyBase::Types::Configs::Influx.load(root, 'influx', env, :influx)
+    influx = RubyBase::Types::Configs::Influx.from_file(root, 'influx', env)
     register :influx_config, influx.freeze
   end
 end

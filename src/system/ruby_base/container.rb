@@ -1,15 +1,11 @@
 # frozen_string_literal: true
 
-require 'dry/web/container'
-require 'dry/system/components'
-
 module RubyBase
-  class Container < Dry::Web::Container
+  class Container < Dry::System::Container
     configure do
       config.name = :ruby_base
-      config.listeners = true
       config.default_namespace = 'ruby_base'
-      config.auto_register = %w(lib/ruby_base)
+      config.auto_register = %w(lib)
     end
 
     load_paths! 'lib'

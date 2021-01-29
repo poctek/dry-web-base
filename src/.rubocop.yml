@@ -1,8 +1,13 @@
+require:
+  - rubocop-performance
+  - rubocop-sequel
+  - rubocop-rake
+
 AllCops:
-  TargetRubyVersion: 2.5.1
+  TargetRubyVersion: 2.7.2
+  SuggestExtensions: false
 
   Exclude:
-    - ./**/schema.rb
     - Gemfile
     - bin/*
     - bundle/**/*
@@ -11,38 +16,43 @@ AllCops:
 
   DisplayCopNames: true
 
-Metrics/LineLength:
-  Max: 120
+Layout/LineLength:
+  Max: 140
+  Enabled: false
+  AutoCorrect: false
   Exclude:
     - spec/**/*.rb
 
 Metrics/BlockLength:
-  Exclude:
-    - spec/**/*.rb
-    - db/migrate/*.rb
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Max: 10
+
+Metrics/ClassLength:
+  Enabled: false
 
 Style/BlockDelimiters:
   Exclude:
     - spec/**/*.rb
 
-Rails:
+Style/NumericPredicate:
   Enabled: false
 
-Metrics/AbcSize:
-  Max: 20
-  Exclude:
-    - db/migrate/*.rb
-
-Metrics/CyclomaticComplexity:
-  Max: 7
-
-Metrics/ParameterLists:
-  Max: 10
-
-Metrics/MethodLength:
-  Max: 15
-  Exclude:
-    - db/migrate/*.rb
+Style/WhileUntilModifier:
+  Enabled: false
 
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
@@ -65,11 +75,90 @@ Lint/AmbiguousBlockAssociation:
 Bundler/OrderedGems:
   Enabled: false
 
-Metrics/ClassLength:
-  Max: 200
-
 Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/MultilineBlockChain:
+  Enabled: false
+
+Sequel/ColumnDefault:
   Enabled: false
 
 Documentation:
   Enabled: false
+
+# DEFAULT
+
+Layout/SpaceBeforeBrackets: # (new in 1.7)
+  Enabled: true
+
+Lint/AmbiguousAssignment: # (new in 1.7)
+  Enabled: true
+Lint/DeprecatedConstants: # (new in 1.8)
+  Enabled: true
+Lint/DuplicateBranch: # (new in 1.3)
+  Enabled: true
+Lint/DuplicateRegexpCharacterClassElement: # (new in 1.1)
+  Enabled: true
+Lint/EmptyBlock: # (new in 1.1)
+  Enabled: true
+Lint/EmptyClass: # (new in 1.3)
+  Enabled: true
+Lint/LambdaWithoutLiteralBlock: # (new in 1.8)
+  Enabled: true
+Lint/NoReturnInBeginEndBlocks: # (new in 1.2)
+  Enabled: true
+Lint/RedundantDirGlobSort: # (new in 1.8)
+  Enabled: true
+Lint/ToEnumArguments: # (new in 1.1)
+  Enabled: true
+Lint/UnexpectedBlockArity: # (new in 1.5)
+  Enabled: true
+Lint/UnmodifiedReduceAccumulator: # (new in 1.1)
+  Enabled: true
+
+Style/ArgumentsForwarding: # (new in 1.1)
+  Enabled: true
+Style/CollectionCompact: # (new in 1.2)
+  Enabled: true
+Style/DocumentDynamicEvalDefinition: # (new in 1.1)
+  Enabled: true
+Style/EndlessMethod: # (new in 1.8)
+  Enabled: true
+Style/HashExcept: # (new in 1.7)
+  Enabled: true
+Style/NegatedIfElseCondition: # (new in 1.2)
+  Enabled: true
+Style/NilLambda: # (new in 1.3)
+  Enabled: true
+Style/RedundantArgument: # (new in 1.4)
+  Enabled: true
+Style/SwapValues: # (new in 1.1)
+  Enabled: true
+
+Performance/AncestorsInclude: # (new in 1.7)
+  Enabled: true
+Performance/BigDecimalWithNumericArgument: # (new in 1.7)
+  Enabled: true
+Performance/BlockGivenWithExplicitBlock: # (new in 1.9)
+  Enabled: true
+Performance/CollectionLiteralInLoop: # (new in 1.8)
+  Enabled: true
+Performance/ConstantRegexp: # (new in 1.9)
+  Enabled: true
+Performance/MethodObjectAsBlock: # (new in 1.9)
+  Enabled: true
+Performance/RedundantSortBlock: # (new in 1.7)
+  Enabled: true
+Performance/RedundantStringChars: # (new in 1.7)
+  Enabled: true
+Performance/ReverseFirst: # (new in 1.7)
+  Enabled: true
+Performance/SortReverse: # (new in 1.7)
+  Enabled: true
+Performance/Squeeze: # (new in 1.7)
+  Enabled: true
+Performance/StringInclude: # (new in 1.7)
+  Enabled: true
+Performance/Sum: # (new in 1.8)
+  Enabled: true

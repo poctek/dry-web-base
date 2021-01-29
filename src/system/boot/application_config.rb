@@ -2,6 +2,7 @@
 
 RubyBase::Container.boot :application_config do
   init do
+    require 'ruby_base/types/configs/base_config'
     require 'ruby_base/types/configs/application'
   end
 
@@ -9,7 +10,7 @@ RubyBase::Container.boot :application_config do
     root = container.root
     env = ENV.fetch 'RACK_ENV', 'development'
 
-    application = RubyBase::Types::Configs::Application.load(root, 'application', env)
+    application = RubyBase::Types::Configs::Application.from_file(root, 'application', env)
 
     register :application_config, application.freeze
   end

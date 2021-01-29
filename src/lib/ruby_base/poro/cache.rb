@@ -1,17 +1,9 @@
 # frozen_string_literal: true
 
-require 'json'
-
-require 'dry/monads/result'
-require 'dry/monads/try'
-require 'dry/monads/maybe'
-
 module RubyBase
   module Poro
     class Cache
-      include Dry::Monads::Result::Mixin
-      include Dry::Monads::Maybe::Mixin
-      include Dry::Monads::Try::Mixin
+      include Dry::Monads[:result, :try, :maybe]
 
       include Import[:logger, :redis]
 

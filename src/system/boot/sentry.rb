@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
-RubyBase::Container.boot :raven do
+RubyBase::Container.boot :sentry do
   init do
-    require 'raven'
+    require 'sentry-ruby'
   end
 
   start do |container|
     use :application_config
 
-    Raven.configure do |config|
+    Sentry.init do |config|
       config.dsn = container[:application_config].raven_dsn.value_or(nil)
-      config.environments = %w(production stage)
     end
   end
 end

@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
-require 'dry/monads/try'
-require 'dry/monads/maybe'
-require 'dry/monads/result'
+require 'erb'
+require 'yaml'
+
+require 'dry/system/container'
+require 'dry/monads/all'
+require 'dry/validation'
 require 'dry/transaction/operation'
-require 'dry/web/roda/application'
 require 'dry-struct'
 require 'dry-types'
+
+Dry::Validation.load_extensions(:monads)

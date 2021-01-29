@@ -1,4 +1,8 @@
 # frozen_string_literal: true
 
+require 'roda'
+
 require_relative 'system/boot'
-run RubyBase::Web.freeze.app
+require_relative 'api/api'
+
+run API.freeze.app
