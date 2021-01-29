@@ -1,8 +1,10 @@
-FROM whalesburgcom/ruby:latest
+FROM ruby:2.7.2-slim-buster
 
 RUN mkdir /ruby_base
 
 WORKDIR /ruby_base
+
+RUN bundle install --system -j8 --without development test
 
 COPY ./src /ruby_base
 
@@ -13,7 +15,5 @@ COPY ./src/config/redis.example.yml config/redis.yml
 
 COPY ./docker/stage/docker-entrypoint.sh /sbin/
 RUN chmod +x /sbin/*.sh
-
-ENV BUNDLE_PATH /ruby_base/vendor/bundle
 
 ENTRYPOINT ["/sbin/docker-entrypoint.sh"]

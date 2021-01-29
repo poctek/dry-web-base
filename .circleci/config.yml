@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: /tmp/ruby_base
     docker:
-      - image: whalesburgcom/ruby:latest
+      - image: ruby:2.7.2-slim-buster
         environment:
           POSTGRES_USERNAME: postgres
           RACK_ENV: test

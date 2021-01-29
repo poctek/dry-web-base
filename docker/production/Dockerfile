@@ -1,4 +1,4 @@
-FROM whalesburgcom/ruby:latest
+FROM ruby:2.7.2-slim-buster
 
 RUN mkdir /ruby_base
 
